@@ -21,13 +21,14 @@ ANIMATION TYPES
 **Rotating exits (rotateOut, rotateOutDownLeft, rotateOutDownRight, rotateOutUpLeft, rotateOutUpRight)**
 
 ## Usage
-> For .sass file
-```
+**For .sass file**
+```css
 .animated-elem
   +animated(fadeIn, 1s, 0.5s)
 ```
 
-> For .scss file
+
+**For .scss file**
 
 ```css
 .animated-elem {
