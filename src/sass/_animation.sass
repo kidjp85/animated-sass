@@ -1,0 +1,519 @@
+/*
+ *ANIMATION TYPES
+
+ *Attention seekers(flash bounce shake tada)
+ *Fading entrances(fadeIn fadeInUp fadeInDown fadeInLeft fadeInRight fadeInUpBig fadeInDownBig fadeInLeftBig fadeInRightBig)
+ *Fading exits(fadeOut fadeOutUp fadeOutDown fadeOutLeft fadeOutRight fadeOutUpBig fadeOutDownBig fadeOutLeftBig fadeOutRightBig)
+ *Bouncing entrances(bounceIn bounceInDown bounceInUp bounceInLeft bounceInRight)
+ *Bouncing exits(bounceOut bounceOutDown bounceOutUp bounceOutLeft bounceOutRight)
+ *Rotating entrances(rotateIn rotateInDownLeft rotateInDownRight rotateInUpLeft rotateInUpRight)
+ *Rotating exits(rotateOut rotateOutDownLeft rotateOutDownRight rotateOutUpLeft rotateOutUpRight)
+
+ *Author: Phuc Nguyen Hoang
+ *This Mixin is based on the work being done here: http://daneden.github.io/animate.css/
+
+ *How to use it?
+ *Example: In sass file
+ *.animated-elem
+ *  +animated(fadeIn, 1s, 0.5s)
+ */
+
+=animated($name: fadeIn, $duration: 1s, $delay: .2s, $function: ease, $mode: both)
+  +animationType($name, $duration, $delay, $function, $mode)
+
+//define animation type
+=animationType($name, $duration, $delay, $function, $mode)
+  -webkit-animation: #{$name $duration $delay $function $mode}
+  -moz-animation: #{$name $duration $delay $function $mode}
+  -ms-animation: #{$name $duration $delay $function $mode}
+  -o-animation: #{$name $duration $delay $function $mode}
+  animation: #{$name $duration $delay $function $mode}    
+
+//define keyframes
+=keyframes($animation-name)
+  @-webkit-keyframes #{$animation-name}
+    @content
+
+  @-moz-keyframes #{$animation-name}
+    @content
+
+  @-ms-keyframes #{$animation-name}
+    @content
+
+  @-o-keyframes #{$animation-name}
+    @content
+
+  @keyframes #{$animation-name}
+    @content
+
+//transform
+=transform($transforms)
+  -moz-transform: $transforms
+  -o-transform: $transforms
+  -ms-transform: $transforms
+  -webkit-transform: $transforms
+  transform: $transforms
+
+//transform origin
+=transform-origin($origin)
+  -moz-transform-origin: $origin
+  -o-transform-origin: $origin
+  -ms-transform-origin: $origin
+  -webkit-transform-origin: $origin
+  transform-origin: $origin
+
+// rotate
+=rotate($deg)
+  +transform(rotate(#{$deg}deg))
+
+// scale
+=scale($scale)
+  +transform(scale($scale))
+
+// translate
+=translate($x, $y)
+  +transform(translate($x, $y))
+
+// skew
+=skew($x, $y)
+  +transform(skew(#{$x}deg, #{$y}deg))
+
+=translateX($x)
+  +translate($x, 0)
+
+=translateY($y)
+  +translate(0, $y)
+
+=translate3d($x, $y, $z)
+  +transform(translate3d($x, $y, $z))
+
+=scaleRotate($scale, $deg)
+  +transform(scale($scale) rotate(#{$deg}deg))
+
++keyframes(fadeIn) 
+  0%
+    opacity: 0
+  100%
+    opacity: 1
+
++keyframes(fadeOut) 
+  0%
+    opacity: 1
+  100%
+    opacity: 0
+
++keyframes(fadeInUp)
+  0%
+    opacity: 0
+    +translateY(20px)
+  100%
+    opacity: 1
+    +translateY(0)
+
++keyframes(fadeOutUp)
+  0%
+    opacity: 1
+    +translateY(0)
+  100%
+    opacity: 0
+    +translateY(-20px)
+
++keyframes(fadeInDown)
+  0%
+    opacity: 0
+    +translateY(-20px)
+  100%
+    opacity: 1
+    +translateY(0)
+
++keyframes(fadeOutDown)
+  0%
+    opacity: 1
+    +translateY(0)
+  100%
+    opacity: 0
+    +translateY(20px)
+
++keyframes(fadeInRight)
+  0%
+    opacity: 0
+    +translateX(20px)
+  100%
+    opacity: 1
+    +translateX(0)
+
++keyframes(fadeOutLeft)
+  0%
+    opacity: 1
+    +translateX(0)
+  100%
+    opacity: 0
+    +translateX(-20px)
+
++keyframes(fadeInLeft)
+  0%
+    opacity: 0
+    +translateX(-20px)
+  100%
+    opacity: 1
+    +translateX(0)
+
++keyframes(fadeOutRight)
+  0%
+    opacity: 1
+    +translateX(0)
+  100%
+    opacity: 0
+    +translateX(20px)
+
++keyframes(fadeInUpBig)
+  0%
+    opacity: 0
+    +translateY(2000px)
+  100%
+    opacity: 1
+    +translateY(0)
+
++keyframes(fadeOutUpBig)
+  0%
+    opacity: 1
+    +translateY(0)
+  100%
+    opacity: 0
+    +translateY(-2000px)
+
++keyframes(fadeInDownBig)
+  0%
+    opacity: 0
+    +translateY(-2000px)
+  100%
+    opacity: 1
+    +translateY(0)
+
++keyframes(fadeOutDownBig)
+  0%
+    opacity: 1
+    +translateY(0)
+  100%
+    opacity: 0
+    +translateY(2000px)
+
++keyframes(fadeInRightBig)
+  0%
+    opacity: 0
+    +translateX(2000px)
+  100%
+    opacity: 1
+    +translateX(0)
+
++keyframes(fadeOutLeftBig)
+  0%
+    opacity: 1
+    +translateX(0)
+  100%
+    opacity: 0
+    +translateX(-2000px)
+
++keyframes(fadeInLeftBig)
+  0%
+    opacity: 0
+    +translateX(-2000px)
+  100%
+    opacity: 1
+    +translateX(0)
+
++keyframes(fadeOutRightBig)
+  0%
+    opacity: 1
+    +translateX(0)
+  100%
+    opacity: 0
+    +translateX(2000px)
+
++keyframes(bounceIn)
+  0%
+    opacity: 0
+    +scale(0.3)
+  50%
+    opacity: 1
+    +scale(1.05)
+  70%
+    +scale(0.9)
+  100%
+    +scale(1)
+
++keyframes(bounceInDown)
+  0%
+    opacity: 0
+    +translateY(-2000px)
+  60%
+    opacity: 1
+    +translateY(30px)
+  80%
+    +translateY(-10px)
+  100%
+    +translateY(0)
+
++keyframes(bounceInUp)
+  0%
+    opacity: 0
+    +translateY(2000px)
+  60%
+    opacity: 1
+    +translateY(-30px)
+  80%
+    +translateY(10px)
+  100%
+    +translateY(0)
+
++keyframes(bounceInRight)
+  0%
+    opacity: 0
+    +translateX(2000px)
+  60%
+    opacity: 1
+    +translateX(-30px)
+  80%
+    +translateX(10px)
+  100%
+    +translateX(0)
+
++keyframes(bounceInLeft)
+  0%
+    opacity: 0
+    +translateX(-2000px)
+  60%
+    opacity: 1
+    +translateX(30px)
+  80%
+    +translateX(-10px)
+  100%
+    +translateX(0)
+
++keyframes(bounceOut)
+  0%
+    +scale(1)
+  25%
+    +scale(0.95)
+  50%
+    opacity: 1
+    +scale(1.1)
+  100%
+    opacity: 0
+    +scale(0.3)
+
++keyframes(bounceOutUp)
+  0%
+    +translateY(0)
+  20%
+    opacity: 1
+    +translateY(20px)
+  100%
+    opacity: 0
+    +translateY(-2000px)
+
++keyframes(bounceOutDown)
+  0%
+    +translateY(0)
+  20%
+    opacity: 1
+    +translateY(-20px)
+  100%
+    opacity: 0
+    +translateY(2000px)
+
++keyframes(bounceOutLeft)
+  0%
+    +translateX(0)
+  20%
+    opacity: 1
+    +translateX(20px)
+  100%
+    opacity: 0
+    +translateX(-2000px)
+
++keyframes(bounceOutRight)
+  0%
+    +translateX(0)
+  20%
+    opacity: 1
+    +translateX(-20px)
+  100%
+    opacity: 0
+    +translateX(2000px)
+
++keyframes(flash)
+  0%
+    opacity: 1
+  25%
+    opacity: 0
+  50%
+    opacity: 1
+  75%
+    opacity: 0
+  100%
+    opacity: 1
+
++keyframes(bounce)
+  0%
+    +translateY(0)
+  20%
+    +translateY(0)
+  40%
+    +translateY(-30px)
+  50%
+    +translateY(0)
+  60%
+    +translateY(-15px)
+  80%
+    +translateY(0)
+  100%
+    +translateY(0)
+
++keyframes(shake)
+  0%
+    +translateX(0)
+  10%
+    +translateX(-10px)
+  20%
+    +translateX(10px)
+  30%
+    +translateX(-10px)
+  40%
+    +translateX(10px)
+  50%
+    +translateX(-10px)
+  60%
+    +translateX(10px)
+  70%
+    +translateX(-10px)
+  80%
+    +translateX(10px)
+  90%
+    +translateX(-10px)
+  100%
+    +translateX(0)
+
++keyframes(rotateInDownLeft)
+  0%
+    +transform-origin(left bottom)
+    +rotate(-90)
+    opacity: 0
+  100%
+    +transform-origin(left bottom)
+    +rotate(0)
+    opacity: 1
+
++keyframes(rotateInUpLeft)
+  0%
+    +transform-origin(left bottom)
+    +rotate(90)
+    opacity: 0
+  100%
+    +transform-origin(left bottom)
+    +rotate(0)
+    opacity: 1
+
++keyframes(rotateInUpRight)
+  0%
+    +transform-origin(right bottom)
+    +rotate(-90)
+    opacity: 0
+  100%
+    +transform-origin(right bottom)
+    +rotate(0)
+    opacity: 1
+
++keyframes(rotateInDownRight)
+  0%
+    +transform-origin(right bottom)
+    +rotate(90)
+    opacity: 0
+  100%
+    +transform-origin(right bottom)
+    +rotate(0)
+    opacity: 1
+
++keyframes(rotateOutDownLeft)
+  0%
+    +transform-origin(left bottom)
+    +rotate(0)
+    opacity: 1
+  100%
+    +transform-origin(left bottom)
+    +rotate(90)
+    opacity: 0
+
++keyframes(rotateOutUpLeft)
+  0%
+    +transform-origin(left bottom)
+    +rotate(0)
+    opacity: 1
+  100%
+    +transform-origin(left bottom)
+    +rotate(-90)
+    opacity: 0
+
++keyframes(rotateOutDownRight)
+  0%
+    +transform-origin(right bottom)
+    +rotate(0)
+    opacity: 1
+  100%
+    +transform-origin(right bottom)
+    +rotate(-90)
+    opacity: 0
+
++keyframes(rotateOutUpRight)
+  0%
+    +transform-origin(right bottom)
+    +rotate(0)
+    opacity: 1
+  100%
+    +transform-origin(right bottom)
+    +rotate(90)
+    opacity: 0
+
++keyframes(rotateIn)
+  0%
+    +transform-origin(center center)
+    +rotate(-200)
+    opacity: 0
+  100%
+    +transform-origin(center center)
+    +rotate(0)
+    opacity: 1
+
++keyframes(rotateOut)
+  0%
+    +transform-origin(center center)
+    +rotate(0)
+    opacity: 1
+  100%
+    +transform-origin(center center)
+    +rotate(200)
+    opacity: 0
+
++keyframes(tada)
+  0%
+    +scale(1)
+  10%
+    +scaleRotate(0.9, -3)
+  20%
+    +scaleRotate(0.9, -3)
+  30%
+    +scaleRotate(1.1, 3)
+  40%
+    +scaleRotate(1.1, -3)
+  50%
+    +scaleRotate(1.1, 3)
+  60%
+    +scaleRotate(1.1, -3)
+  70%
+    +scaleRotate(1.1, 3)
+  80%
+    +scaleRotate(1.1, -3)
+  90%
+    +scaleRotate(1.1, 3)
+  100%
+    +scaleRotate(1, 0)
